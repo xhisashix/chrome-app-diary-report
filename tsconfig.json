@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "types": ["chrome"],
+    "lib": ["es2015", "dom", "ES2017"]
+  },
+  "include": ["src/ts/*.ts"],
+  "exclude": ["node_modules"]
+}
