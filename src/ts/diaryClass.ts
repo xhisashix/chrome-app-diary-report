@@ -1,5 +1,4 @@
 class diaryClass {
-
   /**
    * @param {string} task_report
    * @param {string} status_report
@@ -42,12 +41,7 @@ class diaryClass {
   }
 
   template(task_report: string, status_report: string) {
-    const report = `
-    【進捗状況】\n
-    ${status_report}
-    【タスク状況】\n
-    ${task_report}
-    `;
+    const report = `【進捗状況】\n${status_report}\n\n【タスク状況】\n${task_report}`;
 
     return report;
   }
