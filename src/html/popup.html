@@ -19,7 +19,7 @@
           </label>
           <textarea
             name="report"
-            id="report_task"
+            id="statusReport"
             cols="30"
             rows="10"
             placeholder="進捗状況を入力してください"
@@ -33,7 +33,7 @@
           </label>
           <textarea
             name="report"
-            id="report_task"
+            id="taskReport"
             cols="30"
             rows="10"
             placeholder="タスク状況を入力してください"
@@ -44,11 +44,14 @@
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="button"
+            id="createBtn"
           >
             日報生成
           </button>
         </div>
       </form>
     </main>
+
+    <script src="../js/popup.js"></script>
   </body>
 </html>
