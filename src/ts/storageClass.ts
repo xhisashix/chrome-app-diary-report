@@ -10,4 +10,17 @@ class storageClass {
         console.log("Value is set to " + value);
       };
   }
+
+  /**
+   * @param {string} key - Key to get settings under
+   * @param {strung} value - Value to get settings under
+   * @return {void}
+   */
+  getReportFromStorage(key: string, callback: (result: string) => void) {
+    chrome.storage.local.get([key], (result) => {
+      callback(result[key]);
+    });
+  }
 }
+
+export default storageClass;
