@@ -5,18 +5,23 @@
   "main": "src/main.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/chrome": "^0.0.248",
+    "@types/jest": "^29.5.7",
+    "@types/mocha": "^10.0.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "style-loader": "^3.3.3",
+    "ts-node": "^10.9.1",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "jest": "^29.7.0 ",
+    "ts-jest": "^ 29.1.1",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "webextension-polyfill-ts": "^0.26.0",

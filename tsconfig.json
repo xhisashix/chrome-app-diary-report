@@ -6,9 +6,10 @@
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "types": ["chrome"],
+    "moduleResolution": "node",
+    "types": ["chrome", "jest"],
     "lib": ["es2015", "dom", "ES2017"]
   },
-  "include": ["src/ts/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/ts/*.ts", "check.test.ts"],
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
