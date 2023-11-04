@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日報生成</title>
+    <link rel="stylesheet" href="../css/dist.css" />
+  </head>
+
+  <body>
+    <main class="container mx-auto w-500 min-w-full min-h-screen pt-2 pb-2">
+      <form class="bg-white rounded">
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="username"
+          >
+            進捗状況
+          </label>
+          <textarea
+            name="report"
+            id="report_task"
+            cols="30"
+            rows="10"
+            placeholder="進捗状況を入力してください"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="username"
+          >
+            タスク状況
+          </label>
+          <textarea
+            name="report"
+            id="report_task"
+            cols="30"
+            rows="10"
+            placeholder="タスク状況を入力してください"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            日報生成
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
