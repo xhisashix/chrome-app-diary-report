@@ -3,15 +3,13 @@ class diaryClass {
    * @param {string} task_report
    * @param {string} status_report
    */
-  createReportMail(task_report: string, status_report: string) {
+  createReportMail(to: string, cc: string,task_report: string, status_report: string) {
     // 引数をもとにGmailの下書きを作成する
     const date = new Date();
     const today =
       date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     const subject = today + " " + "日報 - " + "名前";
     const body = this.template(task_report, status_report);
-    const to = "";
-    const cc = "";
 
     const parsedBody = this.encodePlainText(body);
     const baseUrl = "https://mail.google.com/mail/?view=cm";

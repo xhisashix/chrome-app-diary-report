@@ -10,8 +10,19 @@ const status_report = document.getElementById(
   "statusReport"
 ) as HTMLInputElement;
 
+let to: string;
+let cc: string;
+
+storage.getReportFromStorage("to", (value) => {
+  to = value || "";
+});
+
+storage.getReportFromStorage("cc", (value) => {
+  cc = value || "";
+});
+
 createBtn.addEventListener("click", () => {
-  diary.createReportMail(task_report.value, status_report.value);
+  diary.createReportMail(to, cc, task_report.value, status_report.value);
 });
 
 /**
@@ -41,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 document.addEventListener("DOMContentLoaded", () => {
   storage.getReportFromStorage("task_report", (result) => {
-    task_report.value = result;
+    task_report.value = result || "";
   });
 
   storage.getReportFromStorage("status_report", (result) => {
-    status_report.value = result;
+    status_report.value = result || "";
   });
 });
