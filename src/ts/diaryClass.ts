@@ -3,7 +3,12 @@ class diaryClass {
    * @param {string} task_report
    * @param {string} status_report
    */
-  createReportMail(to: string, cc: string,task_report: string, status_report: string) {
+  createReportMail(
+    to: string,
+    cc: string,
+    task_report: string,
+    status_report: string
+  ) {
     // 引数をもとにGmailの下書きを作成する
     const date = new Date();
     const today =
@@ -13,16 +18,7 @@ class diaryClass {
 
     const parsedBody = this.encodePlainText(body);
     const baseUrl = "https://mail.google.com/mail/?view=cm";
-    const url =
-      baseUrl +
-      "&to=" +
-      to +
-      "&cc=" +
-      cc +
-      "&su=" +
-      subject +
-      "&body=" +
-      parsedBody;
+    const url = `${baseUrl}&to=${to}&cc=${cc}&su=${subject}&body=${parsedBody}`;
     chrome.tabs.create({ url: url }, (tab) => {
       console.log("tab", tab);
     });
