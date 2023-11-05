@@ -1,24 +1,36 @@
+import storageClass from "./storageClass";
 class diaryClass {
+  storage: storageClass;
+
+  constructor() {
+    this.storage = new storageClass();
+  }
+
   /**
    * @param {string} task_report
    * @param {string} status_report
    */
-  createReportMail(
-    to: string,
-    cc: string,
-    task_report: string,
-    status_report: string
-  ) {
+  async createReportMail(task_report: string, status_report: string) {
     // 引数をもとにGmailの下書きを作成する
     const date = new Date();
     const today =
       date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     const subject = today + " " + "日報 - " + "名前";
-    const body = this.template(task_report, status_report);
 
-    const parsedBody = this.encodePlainText(body);
+    const report_settings = await this.storage.getReportSetting([
+      "to",
+      "cc",
+      "report_head",
+    ]);
+
+    const to = report_settings[0].to;
+    const cc = report_settings[1].cc;
+    const report_head = report_settings[2].report_head || "";
+    const body = this.template(report_head, task_report, status_report);
+
+    const encodeBody = this.encodePlainText(body);
     const baseUrl = "https://mail.google.com/mail/?view=cm";
-    const url = `${baseUrl}&to=${to}&cc=${cc}&su=${subject}&body=${parsedBody}`;
+    const url = `${baseUrl}&to=${to}&cc=${cc}&su=${subject}&body=${encodeBody}`;
     chrome.tabs.create({ url: url }, (tab) => {
       console.log("tab", tab);
     });
@@ -34,8 +46,13 @@ class diaryClass {
     return encodedBody;
   }
 
-  template(task_report: string, status_report: string) {
-    const report = `【進捗状況】\n${status_report}\n\n【タスク状況】\n${task_report}`;
+  /**
+   * @param {string} task_report
+   * @param {string} status_report
+   * @return {string}
+   */
+  template(report_head: string, task_report: string, status_report: string) {
+    const report = `${report_head}\n\n【進捗状況】\n${status_report}\n\n【タスク状況】\n${task_report}`;
 
     return report;
   }

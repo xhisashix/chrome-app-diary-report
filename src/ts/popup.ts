@@ -22,7 +22,7 @@ storage.getReportFromStorage("cc", (value) => {
 });
 
 createBtn.addEventListener("click", () => {
-  diary.createReportMail(to, cc, task_report.value, status_report.value);
+  diary.createReportMail(task_report.value, status_report.value);
 });
 
 /**
