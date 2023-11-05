@@ -48,6 +48,7 @@ class storageClass {
       to?: string;
       cc?: string;
       report_head?: string;
+      name?: string;
     }
 
     for (const value of key) {

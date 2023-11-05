@@ -11,17 +11,20 @@ class diaryClass {
    * @param {string} status_report
    */
   async createReportMail(task_report: string, status_report: string) {
-    // 引数をもとにGmailの下書きを作成する
-    const date = new Date();
-    const today =
-      date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
-    const subject = today + " " + "日報 - " + "名前";
-
     const report_settings = await this.storage.getReportSetting([
       "to",
       "cc",
       "report_head",
+      "name"
     ]);
+
+    // 引数をもとにGmailの下書きを作成する
+    const date = new Date();
+    const today =
+      date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+    const name = report_settings[3].name || "";
+    const subject = `${today}  日報 - ${name}`;
+
 
     const to = report_settings[0].to;
     const cc = report_settings[1].cc;
