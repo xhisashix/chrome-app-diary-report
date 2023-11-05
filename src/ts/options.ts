@@ -1,12 +1,15 @@
 import storageClass from "./storageClass";
+import diaryClass from "./diaryClass";
 
 const storage = new storageClass();
-
+const diary = new diaryClass();
 const to = document.getElementById("to") as HTMLInputElement;
 const cc = document.getElementById("cc") as HTMLInputElement;
 const name = document.getElementById("name") as HTMLInputElement;
 const report_head = document.getElementById("report_head") as HTMLInputElement;
 const save = document.getElementById("save") as HTMLButtonElement;
+const preview_subject = document.getElementById("preview_subject") as HTMLButtonElement;
+const preview_body = document.getElementById("preview_body") as HTMLButtonElement;
 
 storage.getReportFromStorage("to", (value) => {
   to.value = value || "";
@@ -38,3 +41,12 @@ save.onclick = () => {
     message.classList.add("hidden");
   }, 1000);
 };
+
+// プレビューへtemplateの値を出力
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const template = diary.templateForPreview(report_head.value);
+  const subject = diary.createSubject(name.value);
+  preview_subject.innerHTML = subject;
+  preview_body.innerHTML = template;
+});
