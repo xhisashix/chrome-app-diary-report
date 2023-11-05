@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dist.css" />
+  </head>
+  <body>
+    <div class="container mt-4 py-3">
+      <div>
+        <div class="mb-2">
+          <h1 class="text-lg font-bold">送信先設定</h1>
+        </div>
+        <div
+          id="message"
+          class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 hidden"
+          role="alert"
+        >
+          <p class="font-bold">設定を保存しました。</p>
+        </div>
+        <div>
+          <form class="from-15%">
+            <label for="to" class="block text-gray-700 text-base font-bold mb-2"
+              >to:</label
+            >
+            <input
+              type="text"
+              placeholder="to"
+              id="to"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline1 mb-3"
+            />
+            <label for="cc" class="block text-gray-700 text-base font-bold mb-2"
+              >cc:</label
+            >
+            <input
+              type="text"
+              placeholder="cc"
+              id="cc"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline1 mb-3"
+            />
+            <button
+              type="button"
+              id="save"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              保存
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="../js/options.js"></script>
+  </body>
+</html>
