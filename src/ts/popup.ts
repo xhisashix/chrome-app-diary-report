@@ -10,17 +10,6 @@ const status_report = document.getElementById(
   "statusReport"
 ) as HTMLInputElement;
 
-let to: string;
-let cc: string;
-
-storage.getReportFromStorage("to", (value) => {
-  to = value || "";
-});
-
-storage.getReportFromStorage("cc", (value) => {
-  cc = value || "";
-});
-
 createBtn.addEventListener("click", () => {
   diary.createReportMail(task_report.value, status_report.value);
 });
