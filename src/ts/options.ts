@@ -7,6 +7,7 @@ const to = document.getElementById("to") as HTMLInputElement;
 const cc = document.getElementById("cc") as HTMLInputElement;
 const name = document.getElementById("name") as HTMLInputElement;
 const report_head = document.getElementById("report_head") as HTMLInputElement;
+const report_footer = document.getElementById("report_footer") as HTMLInputElement;
 const save = document.getElementById("save") as HTMLButtonElement;
 const preview_subject = document.getElementById("preview_subject") as HTMLButtonElement;
 const preview_body = document.getElementById("preview_body") as HTMLButtonElement;
@@ -27,11 +28,16 @@ storage.getReportFromStorage("report_head", (value) => {
   report_head.value = value || "";
 });
 
+storage.getReportFromStorage("report_footer", (value) => {
+  report_footer.value = value || "";
+});
+
 save.onclick = () => {
   storage.saveReportToStorage("to", to.value);
   storage.saveReportToStorage("cc", cc.value);
   storage.saveReportToStorage("report_head", report_head.value);
   storage.saveReportToStorage("name", name.value);
+  storage.saveReportToStorage("report_footer", report_footer.value);
 
   // 保存完了メッセージ
   const message = document.getElementById("message") as HTMLDivElement;
@@ -45,8 +51,8 @@ save.onclick = () => {
 // プレビューへtemplateの値を出力
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const template = diary.templateForPreview(report_head.value);
-  const subject = diary.createSubject(name.value);
+  const template = await diary.templateForPreview(report_head.value, report_footer.value);
+  const subject = await diary.createSubject(name.value);
   preview_subject.innerHTML = subject;
   preview_body.innerHTML = template;
 });

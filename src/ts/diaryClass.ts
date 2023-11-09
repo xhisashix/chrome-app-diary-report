@@ -15,7 +15,8 @@ class diaryClass {
       "to",
       "cc",
       "report_head",
-      "name"
+      "name",
+      "report_footer",
     ]);
 
     // 引数をもとにGmailの下書きを作成する
@@ -26,7 +27,8 @@ class diaryClass {
     const to = report_settings[0].to;
     const cc = report_settings[1].cc;
     const report_head = report_settings[2].report_head || "";
-    const body = this.template(report_head, task_report, status_report);
+    const report_footer = report_settings[4].report_footer || "";
+    const body = this.template(report_head, task_report, status_report, report_footer);
 
     const encodeBody = this.encodePlainText(body);
     const baseUrl = "https://mail.google.com/mail/?view=cm";
@@ -64,8 +66,8 @@ class diaryClass {
    * @param {string} status_report
    * @return {string}
    */
-  template(report_head: string, task_report: string, status_report: string) {
-    const report = `${report_head}\n\n【進捗状況】\n${status_report}\n\n【タスク状況】\n${task_report}`;
+  template(report_head: string, task_report: string, status_report: string, report_footer: string = "") {
+    const report = `${report_head}\n\n【進捗状況】\n${status_report}\n\n【タスク状況】\n${task_report}\n\n${report_footer}`;
 
     return report;
   }
@@ -76,11 +78,13 @@ class diaryClass {
    */
   templateForPreview(
     report_head: string,
+    report_footer: string,
   ) {
 
     report_head = report_head.replace(/\n/g, "<br>");
+    report_footer = report_footer.replace(/\n/g, "<br>");
     // フォーマットを崩さずに出力
-    const report = `<p>${report_head}</p><br><p>【進捗状況】</p><p>{{進捗状況}}</p><br><p>【タスク状況】</p><p>{{タスク状況}}</p>`;
+    const report = `<p>${report_head}</p><br><p>【進捗状況】</p><p>{{進捗状況}}</p><br><p>【タスク状況】</p><p>{{タスク状況}}</p><br><p>${report_footer}</p>`;
 
 
     return report;
