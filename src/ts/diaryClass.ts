@@ -44,7 +44,7 @@ class diaryClass {
    * @return {string}
    */
   encodePlainText(body: string) {
-    const encodedBody = encodeURIComponent(body);
+    const encodedBody = encodeURI(body);
     return encodedBody;
   }
 
