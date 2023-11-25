@@ -7,10 +7,16 @@ const to = document.getElementById("to") as HTMLInputElement;
 const cc = document.getElementById("cc") as HTMLInputElement;
 const name = document.getElementById("name") as HTMLInputElement;
 const report_head = document.getElementById("report_head") as HTMLInputElement;
-const report_footer = document.getElementById("report_footer") as HTMLInputElement;
+const report_footer = document.getElementById(
+  "report_footer"
+) as HTMLInputElement;
 const save = document.getElementById("save") as HTMLButtonElement;
-const preview_subject = document.getElementById("preview_subject") as HTMLButtonElement;
-const preview_body = document.getElementById("preview_body") as HTMLButtonElement;
+const preview_subject = document.getElementById(
+  "preview_subject"
+) as HTMLButtonElement;
+const preview_body = document.getElementById(
+  "preview_body"
+) as HTMLButtonElement;
 
 storage.getReportFromStorage("to", (value) => {
   to.value = value || "";
@@ -49,10 +55,32 @@ save.onclick = () => {
 };
 
 // プレビューへtemplateの値を出力
-document.addEventListener("DOMContentLoaded", async () => {
-
-  const template = await diary.templateForPreview(report_head.value, report_footer.value);
-  const subject = await diary.createSubject(name.value);
+window.onload = async () => {
+  const template = await diary.templateForPreview(
+    report_head.value,
+    report_footer.value
+  );
+  const subject = diary.createSubject(name.value);
   preview_subject.innerHTML = subject;
   preview_body.innerHTML = template;
+};
+
+// 設定が変更されたときにプレビューを再読み込みする
+const reloadPreview = () => {
+  const template: string = diary.templateForPreview(
+    report_head.value,
+    report_footer.value
+  );
+  preview_body.innerHTML = template;
+  let subject: string = diary.createSubject(name.value);
+  preview_subject.innerHTML = subject;
+};
+
+["to", "cc", "report_head", "name", "report_footer"].forEach((id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.addEventListener("change", reloadPreview);
+  } else {
+    console.warn(`Element with id "${id}" not found.`);
+  }
 });
